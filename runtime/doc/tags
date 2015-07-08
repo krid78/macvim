@@ -91,6 +91,8 @@ $VIMRUNTIME	starting.txt	/*$VIMRUNTIME*
 'bkc'	options.txt	/*'bkc'*
 'bl'	options.txt	/*'bl'*
 'bo'	options.txt	/*'bo'*
+'blur'	options.txt	/*'blur'*
+'blurradius'	options.txt	/*'blurradius'*
 'bomb'	options.txt	/*'bomb'*
 'breakat'	options.txt	/*'breakat'*
 'breakindent'	options.txt	/*'breakindent'*
