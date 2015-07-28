@@ -2372,8 +2372,9 @@ do_one_cmd(cmdlinep, sourcing,
 	p = vim_strnsave(ea.cmd, (int)(p - ea.cmd));
 	ret = apply_autocmds(EVENT_CMDUNDEFINED, p, p, TRUE, NULL);
 	vim_free(p);
-	if (ret && !aborting())
-	    p = find_command(&ea, NULL);
+	/* If the autocommands did something and didn't cause an error, try
+	 * finding the command again. */
+	p = (ret && !aborting()) ? find_command(&ea, NULL) : NULL;
     }
 #endif
 
