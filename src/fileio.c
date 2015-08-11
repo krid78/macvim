@@ -10226,7 +10226,7 @@ file_pat_to_reg_pat(pat, pat_end, allow_dirs, no_bslash)
 #endif
 	    default:
 		size++;
-# ifdef  FEAT_MBYTE
+# ifdef FEAT_MBYTE
 		if (enc_dbcs != 0 && (*mb_ptr2len)(p) > 1)
 		{
 		    ++p;
@@ -10315,7 +10315,7 @@ file_pat_to_reg_pat(pat, pat_end, allow_dirs, no_bslash)
 		    reg_pat[i++] = '?';
 		else
 		    if (*p == ',' || *p == '%' || *p == '#'
-				       || *p == ' ' || *p == '{' || *p == '}')
+			       || vim_isspace(*p) || *p == '{' || *p == '}')
 			reg_pat[i++] = *p;
 		    else if (*p == '\\' && p[1] == '\\' && p[2] == '{')
 		    {
