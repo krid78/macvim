@@ -10881,6 +10881,7 @@ gen_expand_wildcards(num_pat, pat, num_file, file, flags)
     char_u		*p;
     static int		recursive = FALSE;
     int			add_pat;
+    int			retval = OK;
 #if defined(FEAT_SEARCHPATH)
     int			did_expand_in_path = FALSE;
 #endif
@@ -10930,7 +10931,11 @@ gen_expand_wildcards(num_pat, pat, num_file, file, flags)
 
 #ifdef VIM_BACKTICK
 	if (vim_backtick(p))
+	{
 	    add_pat = expand_backtick(&ga, p, flags);
+	    if (add_pat == -1)
+		retval = FAIL;
+	}
 	else
 #endif
 	{
@@ -11019,7 +11024,7 @@ gen_expand_wildcards(num_pat, pat, num_file, file, flags)
 
     recursive = FALSE;
 
-    return (ga.ga_data != NULL) ? OK : FAIL;
+    return (ga.ga_data != NULL) ? retval : FAIL;
 }
 
 # ifdef VIM_BACKTICK
@@ -11037,7 +11042,7 @@ vim_backtick(p)
 /*
  * Expand an item in `backticks` by executing it as a command.
  * Currently only works when pat[] starts and ends with a `.
- * Returns number of file names found.
+ * Returns number of file names found, -1 if an error is encountered.
  */
     static int
 expand_backtick(gap, pat, flags)
@@ -11054,7 +11059,7 @@ expand_backtick(gap, pat, flags)
     /* Create the command: lop off the backticks. */
     cmd = vim_strnsave(pat + 1, (int)STRLEN(pat) - 2);
     if (cmd == NULL)
-	return 0;
+	return -1;
 
 #ifdef FEAT_EVAL
     if (*cmd == '=')	    /* `={expr}`: Expand expression */
@@ -11065,7 +11070,7 @@ expand_backtick(gap, pat, flags)
 				(flags & EW_SILENT) ? SHELL_SILENT : 0, NULL);
     vim_free(cmd);
     if (buffer == NULL)
-	return 0;
+	return -1;
 
     cmd = buffer;
     while (*cmd != NUL)
