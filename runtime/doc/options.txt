@@ -50,7 +50,7 @@ achieve special effects.  These options come in three forms:
 :se[t] {option}&vi	Reset option to its Vi default value. {not in Vi}
 :se[t] {option}&vim	Reset option to its Vim default value. {not in Vi}
 
-:se[t] all&		Set all options to their default value.  The values of 
+:se[t] all&		Set all options to their default value.  The values of
 			these options are not changed:
 			  all terminal options, starting with t_
 			  'columns'
@@ -1288,7 +1288,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 			    characters.  It permits dynamic French paragraph
 			    indentation (negative) or emphasizing the line
 			    continuation (positive).
-		sbr	    Display the 'showbreak' value before applying the 
+		sbr	    Display the 'showbreak' value before applying the
 			    additional indent.
 	The default value for min is 20 and shift is 0.
 
@@ -3414,7 +3414,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	when internal formatting is used.  Make sure the cursor is kept in the
 	same spot relative to the text then!  The |mode()| function will
 	return "i" or "R" in this situation.
-	
+
 	When the expression evaluates to non-zero Vim will fall back to using
 	the internal format mechanism.
 
@@ -3447,7 +3447,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	(e.g. toolbar, title bar).  The tab bar and scroll bars remain visible.
 	Updates to the window position are ignored in fullscreen mode.
 
-	See 'fuoptions' for how Vim resizes and colors the background when 
+	See 'fuoptions' for how Vim resizes and colors the background when
 	entering and leaving fullscreen mode.
 
 	Note: Setting 'fullscreen' usually changes the size of the Vim
@@ -3463,7 +3463,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	a NERDTree or a Tlist only in fullscreen for example. Then again, this
 	could probably be in a sizechanged autocommand that triggers if the
 	size is above a certain threshold.
-	XXX: Think about how 'fullscreen' and 'transparency' should interact. 
+	XXX: Think about how 'fullscreen' and 'transparency' should interact.
 
 						*'fuoptions'* *'fuopt'*
 'fuoptions' 'fuopt'	string (default "maxvert,maxhorz")
@@ -3473,7 +3473,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	In fullscreen mode, most of the screen is black, only a part of the
 	screen is covered by the actual Vim control.  The control is centered.
 	This option controls the size of the Vim control as well as the color
-	of the unused screen area. 
+	of the unused screen area.
 	value	effect	~
         maxvert	When entering fullscreen, 'lines' is set to the maximum number
 		of lines fitting on the screen in fullscreen mode. When
@@ -3497,7 +3497,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 		group's background color, as defined by the current color
 		scheme.
 
-	Examples: 
+	Examples:
 	Don't change size when entering fullscreen: >
 	  :set fuoptions=
 <	Only maximize vertically when entering fullscreen: >
@@ -4887,7 +4887,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	The cursor is displayed at the start of the space a Tab character
 	occupies, not at the end as usual in Normal mode.  To get this cursor
 	position while displaying Tabs with spaces, use: >
-		:set list lcs=tab:\ \ 
+		:set list lcs=tab:\ \
 <
 	Note that list mode will also affect formatting (set with 'textwidth'
 	or 'wrapmargin') when 'cpoptions' includes 'L'.  See 'listchars' for
@@ -5016,8 +5016,8 @@ A jump table for the options with a short description can be found at |Q_op|.
 			global or local to buffer |global-local|
 			{not in Vi}
 	Program to use for the ":make" command.  See |:make_makeprg|.
-	This option may contain '%' and '#' characters (see  |:_%| and |:_#|), 
-	which are expanded to the current and alternate file name.  Use |::S| 
+	This option may contain '%' and '#' characters (see  |:_%| and |:_#|),
+	which are expanded to the current and alternate file name.  Use |::S|
 	to escape file names in case they contain special characters.
 	Environment variables are expanded |:set_env|.  See |option-backslash|
 	about including spaces and backslashes.
@@ -5863,7 +5863,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 	characters are put before the number.
 	See |hl-LineNr|  and |hl-CursorLineNr| for the highlighting used for
 	the number.
-	
+
 	The number in front of the cursor line also depends on the value of
 	'number', see |number_relativenumber| for all combinations of the two
 	options.
@@ -6623,7 +6623,7 @@ A jump table for the options with a short description can be found at |Q_op|.
 			feature}
 	String to put at the start of lines that have been wrapped.  Useful
 	values are "> " or "+++ ": >
-		:set showbreak=>\ 
+		:set showbreak=>\
 <	Note the backslash to escape the trailing space.  It's easier like
 	this: >
 		:let &showbreak = '+++ '
@@ -7519,15 +7519,13 @@ A jump table for the options with a short description can be found at |Q_op|.
 	encoding the keyboard produces and the display will understand.  For
 	the GUI it only applies to the keyboard ( 'encoding' is used for the
 	display).  Except for the Mac when 'macatsui' is off, then
-	'termencoding' should be "macroman" (for the Carbon GUI).
-	In the Win32 console version the default value is the console codepage
-	when it differs from the ANSI codepage.
+	'termencoding' should be "macroman".
 								*E617*
-        Note: This does not apply to the GTK+ 2 and MacVim GUIs.  After the
-        GUI has been successfully initialized, 'termencoding' is forcibly set
-        to "utf-8".  Any attempts to set a different value will be rejected,
-	and an error message is shown.
-	For the Win32 GUI 'termencoding' is not used for typed characters,
+	Note: This does not apply to the GTK+ 2 GUI.  After the GUI has been
+	successfully initialized, 'termencoding' is forcibly set to "utf-8".
+	Any attempts to set a different value will be rejected, and an error
+	message is shown.
+	For the Win32 GUI and console versions 'termencoding' is not used,
 	because the Win32 system always passes Unicode characters.
 	When empty, the same encoding is used as for the 'encoding' option.
 	This is the normal value.
