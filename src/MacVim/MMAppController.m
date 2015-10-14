@@ -1079,6 +1079,7 @@ fsEventCallback(ConstFSEventStreamRef streamRef,
 
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:YES];
+    [panel setCanChooseDirectories:YES];
     [panel setAccessoryView:showHiddenFilesView()];
 #if (MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6)
     // NOTE: -[NSOpenPanel runModalForDirectory:file:types:] is deprecated on
@@ -1699,12 +1700,17 @@ fsEventCallback(ConstFSEventStreamRef streamRef,
         while ((param = [enumerator nextObject])) {
             NSArray *arr = [param componentsSeparatedByString:@"="];
             if ([arr count] == 2) {
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_11
+                [dict setValue:[[arr lastObject] stringByRemovingPercentEncoding]
+                        forKey:[[arr objectAtIndex:0] stringByRemovingPercentEncoding]];
+#else
                 [dict setValue:[[arr lastObject]
                             stringByReplacingPercentEscapesUsingEncoding:
                                 NSUTF8StringEncoding]
                         forKey:[[arr objectAtIndex:0]
                             stringByReplacingPercentEscapesUsingEncoding:
                                 NSUTF8StringEncoding]];
+#endif
             }
         }
 
