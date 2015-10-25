@@ -49,9 +49,11 @@ installed via homebrew) use this configure call instead:
 ## Original README
 
 `README.md` for version 7.4 of Vim: Vi IMproved.
+[![Build Status](https://travis-ci.org/vim/vim.svg?branch=master)](https://travis-ci.org/vim/vim)
+[![Coverage Status](https://coveralls.io/repos/vim/vim/badge.svg?branch=master&service=github)](https://coveralls.io/github/vim/vim?branch=master)
 
 
-## What is VIM ##
+## What is Vim? ##
 
 Vim is an almost compatible version of the UNIX editor Vi.  Many new features
 have been added: multi-level undo, syntax highlighting, command line history,
@@ -71,6 +73,10 @@ UNIX.  Porting to other systems should not be very difficult.
 
 ## Distribution ##
 
+You can often use your favorite package manager to install Vim.  On Mac and
+Linux a small version of Vim is pre-installed, you still need to install Vim
+if you want more features.
+
 There are separate distributions for Unix, PC, Amiga and some other systems.
 This `README.md` file comes with the runtime archive.  It includes the
 documentation, syntax files and other files that are used at runtime.  To run
@@ -78,9 +84,6 @@ Vim you must get either one of the binary archives or a source archive.
 Which one you need depends on the system you want to run it on and whether you
 want or must compile it yourself.  Check http://www.vim.org/download.php for
 an overview of currently available distributions.
-
-[![Build Status](https://travis-ci.org/vim/vim.svg?branch=master)](https://travis-ci.org/vim/vim)
-[![Coverage Status](https://coveralls.io/repos/vim/vim/badge.svg?branch=master&service=github)](https://coveralls.io/github/vim/vim?branch=master)
 
 
 ## Documentation ##
