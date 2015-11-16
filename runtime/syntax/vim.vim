@@ -622,9 +622,6 @@ if !exists("g:vimsyn_embed")
  if     has("python") |let g:vimsyn_embed= g:vimsyn_embed."P"
  elseif has("python3")|let g:vimsyn_embed= g:vimsyn_embed."P"|endif
  if has("ruby")       |let g:vimsyn_embed= g:vimsyn_embed."r"|endif
- if s:trytcl
-  if has("tcl")       |let g:vimsyn_embed= g:vimsyn_embed."t"|endif
- endif
 endif
 
 " [-- lua --] {{{3
